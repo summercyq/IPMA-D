@@ -29,3 +29,13 @@ npm test
 推送到 `main` 後，`.github/workflows/pages.yml` 會驗證題庫並部署 `public/`。首次部署需在 GitHub 儲存庫 Settings → Pages → Build and deployment → Source 選擇 **GitHub Actions**。若首次執行因 Pages 尚未啟用失敗，啟用後在 Actions 重新執行 Deploy IPMA Lab to GitHub Pages。
 
 預期網址為 `https://summercyq.github.io/IPMA-D/`，須以實際部署成功為準。部署內容包括原題庫 PDF。
+
+## 題庫頁面
+
+首頁提供三個入口，均在同一視窗切換到獨立頁面：
+
+- `choice.html`：選擇題作答，點選即判分；篩選與紀錄可展開查看。
+- `calc.html`：計算題作答、筆記及自評。
+- `answers.html`：直接閱讀選擇題答案與解析、計算題原始解答。每頁 20 題，支援題型、錯題、收藏、關鍵字或精確題號篩選，以及選擇題精簡／完整閱讀。閱讀解答不會改動作答紀錄。
+
+解答頁的「練習這題」可直接連到相應題號。三個頁面共用同一瀏覽器的既有紀錄。
