@@ -1,6 +1,6 @@
-import {progress} from './progress.js?v=346508c77e56';
-import {SyncEngine} from './sync-engine.js?v=346508c77e56';
-import {createFirebaseBackend} from './firebase-client.js?v=346508c77e56';
+import {progress} from './progress.js?v=4f56a25ec1a7';
+import {SyncEngine} from './sync-engine.js?v=4f56a25ec1a7';
+import {createFirebaseBackend} from './firebase-client.js?v=4f56a25ec1a7';
 const host=document.querySelector('[data-sync]');
 if(host){
  host.innerHTML='<div class="sync-controls"><span id="sync-user">本機模式</span><button id="sync-login" class="outline" disabled>準備 Google 登入…</button><button id="sync-retry" class="outline" hidden>立即同步</button><button id="sync-logout" class="outline" hidden>登出</button></div><p id="sync-status" role="status">未登入時仍可在此裝置練習。</p><a class="sync-help" href="sync-setup.html">同步設定與說明</a>';
