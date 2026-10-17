@@ -1,0 +1,1 @@
+document.getElementById('copy-rules').onclick=async()=>{try{await navigator.clipboard.writeText(document.querySelector('.rules-code').textContent);document.getElementById('copy-status').textContent='已複製，請貼到 Firestore「規則」並發布。'}catch{document.getElementById('copy-status').textContent='無法自動複製，請選取下方全部規則後複製。'}};

@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /progress/{userId} {
+      function isOwner() {
+        return request.auth != null && request.auth.uid == userId;
+      }
+      function validProgress() {
+        return request.resource.data.keys().hasOnly(['version', 'clearedAt', 'records', 'updatedAt'])
+          && request.resource.data.version == 1
+          && request.resource.data.clearedAt is list
+          && request.resource.data.clearedAt.size() == 2
+          && request.resource.data.clearedAt[0] is int
+          && request.resource.data.clearedAt[0] >= 0
+          && request.resource.data.clearedAt[1] is string
+          && request.resource.data.records is map
+          && request.resource.data.records.size() <= 343
+          && request.resource.data.updatedAt == request.time;
+      }
+      allow get: if isOwner();
+      allow list: if false;
+      allow create, update: if isOwner() && validProgress();
+      allow delete: if isOwner();
+    }
+  }
+}

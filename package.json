@@ -1,1 +1,15 @@
-{"name":"ipma-practice","version":"1.0.0","private":true,"type":"module","scripts":{"start":"node server.mjs","test":"node --test"}}
+{
+  "name": "ipma-practice",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test",
+    "build": "node scripts/build-firebase.mjs"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.11",
+    "firebase": "12.4.0"
+  }
+}
