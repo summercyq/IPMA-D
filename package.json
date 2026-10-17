@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server.mjs",
     "test": "node --test",
-    "build": "node scripts/build-firebase.mjs"
+    "build": "node scripts/build-firebase.mjs && node scripts/version-assets.mjs"
   },
   "devDependencies": {
     "esbuild": "0.25.11",

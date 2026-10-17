@@ -1,5 +1,5 @@
-import {progress} from './progress.js';
-import {filterQuestions,stats,randomQuestions} from './model.js';
+import {progress} from './progress.js?v=346508c77e56';
+import {filterQuestions,stats,randomQuestions} from './model.js?v=346508c77e56';
 const $=s=>document.querySelector(s);let bank=[],explanations={},state={},kind=document.body.dataset.kind==='calc'?'calc':'choice',filter='all',list=[],index=0,selected=null,revealed=false,submitted=false,round=null;
 state=progress.read();
 const navigation=$('.bottom');
@@ -8,7 +8,7 @@ function getRecord(q){return state[q.id]??={}}
 function refreshStats(){const s=stats(bank,kind,state);$('#done').innerHTML=`${s.done} <small>/ ${s.total}</small>`;$('#rate').textContent=s.rate===null?'—':`${s.rate}%`;$('#wrong').textContent=s.wrong;$('#saved').textContent=s.saved;$('#rate-label').textContent=kind==='calc'?'自行評分':'最近作答'}
 function pool(){return filterQuestions(bank,kind,filter,$('#search').value.trim(),state)}
 function updateRound(){
- const available=pool().length;$('#random-start').disabled=!available;$('#random-count').disabled=!available;
+ const available=pool().length;$('#random-start').textContent='開始練習';$('#random-start').disabled=!available;$('#random-count').disabled=!available;
  $('#random-hint').textContent=`從目前篩選的 ${available} 題抽出，不重複；可輸入 1–${available||0} 題。`;
  $('#random-exit').hidden=!round;
  const entries=round?Object.values(round.answers):[];const right=entries.filter(Boolean).length;
@@ -25,8 +25,8 @@ document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.da
 progress.subscribe(event=>{
  state=progress.read();if(!bank.length)return;
  if(event.source==='account'){rebuild();return}
- refreshStats();const q=list[index];if(!q)return;
+ refreshStats();updateRound();if((event.source==='remote'||event.source==='tab')&&!round&&!list.length&&pool().length){list=pool();index=0;render();return}const q=list[index];if(!q)return;
  const r=state[q.id]||{};const bookmark=$('#bookmark');if(bookmark){bookmark.textContent=r.saved?'★ 已收藏':'☆ 收藏題目';bookmark.classList.toggle('on',!!r.saved)}
  const notes=$('#notes');if(notes&&document.activeElement!==notes)notes.value=r.notes||'';
 });
-try{const [response,explanationResponse]=await Promise.all([fetch('questions.json'),fetch('explanations.json')]);if(!response.ok||!explanationResponse.ok)throw Error();bank=await response.json();explanations=await explanationResponse.json();if(bank.some(q=>q.kind==='choice'&&!explanations[q.id]?.text))throw Error();rebuild();const requested=Number(new URLSearchParams(location.search).get('question'));const target=list.findIndex(q=>q.number===requested);if(target>=0){index=target;render()}}catch{$('#card').innerHTML='<div class="empty">題庫或解析載入失敗，請重新整理頁面。<br>請使用 npm start 啟動網頁。</div>'}
+try{const [response,explanationResponse]=await Promise.all([fetch('questions.json'),fetch('explanations.json')]);if(!response.ok||!explanationResponse.ok)throw Error();bank=await response.json();explanations=await explanationResponse.json();if(bank.some(q=>q.kind==='choice'&&!explanations[q.id]?.text))throw Error();rebuild();const requested=Number(new URLSearchParams(location.search).get('question'));const target=list.findIndex(q=>q.number===requested);if(target>=0){index=target;render()}}catch(error){throw error}
