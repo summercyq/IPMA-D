@@ -1,5 +1,5 @@
-import {progress} from './progress.js?v=4f56a25ec1a7';
-import {filterQuestions} from './model.js?v=4f56a25ec1a7';
+import {progress} from './progress.js?v=bec41f02356c';
+import {filterQuestions} from './model.js?v=bec41f02356c';
 const $=s=>document.querySelector(s);
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const pageSize=20;
