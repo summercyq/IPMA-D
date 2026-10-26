@@ -1,4 +1,4 @@
-import {sameDocument} from './progress-core.js?v=bec41f02356c';
+import {sameDocument} from './progress-core.js?v=c3db643d74bf';
 // Firebase web configuration is public; access is protected by Authentication and Firestore rules.
 export const firebaseConfig={
  apiKey:'AIzaSyBpfmexJxuENbDJzVnORYzENum86-7Kt6w',
@@ -9,7 +9,7 @@ export const firebaseConfig={
  appId:'1:437778289005:web:cbcf2556e2f1c5fce6ca64'
 };
 export async function createFirebaseBackend(){
- const sdk=await import('./vendor/firebase.js?v=bec41f02356c');
+ const sdk=await import('./vendor/firebase.js?v=c3db643d74bf');
  const appSDK=sdk,authSDK=sdk,dbSDK=sdk;
  const app=appSDK.initializeApp(firebaseConfig),auth=authSDK.getAuth(app),db=dbSDK.getFirestore(app);
  auth.languageCode='zh-TW';

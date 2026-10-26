@@ -13,4 +13,4 @@ function practiceError(){
  const setup=document.getElementById('copy-status');if(setup)setup.textContent='自動複製暫時無法使用，仍可手動選取下方規則。';
 }
 if(['app','answers','setup'].includes(page))import(new URL('./'+page+'.js'+base.search,base).href).catch(practiceError);
-if(['home','app','answers'].includes(page))import(new URL('./sync.js?v=bec41f02356c'+base.search,base).href).catch(()=>{const panel=document.querySelector('[data-sync]');if(panel)panel.textContent='同步服務暫時無法載入，仍可使用本機練習。'});
+if(['home','app','answers'].includes(page))import(new URL('./sync.js?v=c3db643d74bf'+base.search,base).href).catch(()=>{const panel=document.querySelector('[data-sync]');if(panel)panel.textContent='同步服務暫時無法載入，仍可使用本機練習。'});

@@ -1,4 +1,4 @@
-import {mergeDocuments,sameDocument} from './progress-core.js?v=bec41f02356c';
+import {mergeDocuments,sameDocument} from './progress-core.js?v=c3db643d74bf';
 export class SyncEngine{
  constructor(store,backend,onStatus=()=>{}){this.store=store;this.backend=backend;this.onStatus=onStatus;this.generation=0;this.pending=false;this.busy=false;this.unsubStore=store.subscribe(e=>{if(e.source==='local'||e.source==='tab')this.schedule()})}
  status(text){this.onStatus(text)}
